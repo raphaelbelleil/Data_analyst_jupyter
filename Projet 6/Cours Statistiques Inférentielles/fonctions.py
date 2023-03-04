@@ -82,7 +82,7 @@ def stat_var(var):
 
 
 
-def hist_var(var, nb_col) : 
+def hist_var(var) : 
 
     # variable échantillon de base + méthode IQR + méthode zscore
     
@@ -101,13 +101,11 @@ def hist_var(var, nb_col) :
 
     # mes 9 échantillons
     echantillon = [var, var_IQR, var_zscore, var_log, log_IQR, log_zscore, var_sqrt, sqrt_IQR, sqrt_zscore]
-    echantillon=echantillon[:nb_col]
 
     # les colonnes du dataframe correspondant aux 9 échantillons
     colonne = ['echantillon_base', 'echantillon_base_IQR', 'echantillon_base_zscore', 
                'echantillon_base_log', 'log_IQR', 'log_zscore',
                'echantillon_base_sqrt', 'sqrt_IQR', 'sqrt_zscore']
-    colonne=colonne[:nb_col]
 
     # les indicateurs qu'on va calculer pour chaque échantillon
     indicateur = ['moyenne', 'moyenne_min', 'moyenne_max', 'test_moyenne_10_pourcents','mediane', 'mode', 'moyenne_tronquee', 
@@ -115,10 +113,10 @@ def hist_var(var, nb_col) :
                   'outlier_min_zscore', 'nb_outlier_zscore', 'skewness', 'skewness_pvalue', 'kurtosis', 'kurtosis_pvalue',
                   'ks_pvalue', 'shapiro_pvalue']
     
-    plt.figure(figsize=(30,2.5*nb_col))
+    plt.figure(figsize=(30,15))
 
     for x, i, titre in zip(echantillon, range(len(echantillon)), colonne):
-        plt.subplot((len(echantillon))//3, 3, i+1)
+        plt.subplot((len(echantillon))//3, (len(echantillon))//3,i+1)
         plt.title(titre, size=16)
         plt.xlabel(' ')
         sns.histplot(x)
