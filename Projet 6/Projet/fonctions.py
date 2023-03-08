@@ -76,7 +76,10 @@ def stat_var(var):
 
     df
     
+    print ("Voici un tableau présentant les résultats des tests de représentativité, de forme et de normalité de l'échantillon")
     return df
+    
+    
 
 
 
@@ -188,3 +191,28 @@ def boxplot_var(var):
 
 
     return(plt.show())
+
+
+
+
+
+
+# fonction qui renvoie le nombre de valeurs abberantes ou atypiques d'un échantillon avec différentes méthodes et transformation
+def outliers(var): 
+    # transformations au logarithme 
+    var_log = np.log(var)
+    log_IQR = var_log[var_log<(np.quantile(var_log, 0.75)+(1.5*(st.iqr(var_log))))]
+    log_zscore = var_log[abs(st.zscore(var_log))<3]
+
+    # transformations à la racine
+    var_sqrt = np.sqrt(var)
+    sqrt_IQR = var_sqrt[var_sqrt<(np.quantile(var_sqrt, 0.75)+(1.5*(st.iqr(var_sqrt))))]
+    sqrt_zscore = var_sqrt[abs(st.zscore(var_sqrt))<3]
+
+    print('Nombre de valeurs aberrantes ou atypiques pour chaque échantillon transformé :')
+    print('Echantillon de base méthode IQR :',var[var>(np.quantile(var, 0.75)+(1.5*(st.iqr(var))))].count())
+    print('Echantillon de base méthode zscore :',var[abs(st.zscore(var))>3].count())
+    print('Echantillon passé au logarithme méthode IQR :',var_log[var_log>(np.quantile(var_log, 0.75)+(1.5*(st.iqr(var_log))))].count())
+    print('Echantillon passé au logarithme méthode zscore :',var_log[abs(st.zscore(var_log))>3].count())
+    print('Echantillon passé à la racine méthode IQR :',var_sqrt[var_sqrt>(np.quantile(var_sqrt, 0.75)+(1.5*(st.iqr(var_sqrt))))].count())
+    print('Echantillon passé à la racine méthode zscore :',var_sqrt[abs(st.zscore(var_sqrt))>3].count())
