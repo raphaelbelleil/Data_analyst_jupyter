@@ -1,0 +1,45 @@
+
+1. Identification de la problématique
+    - identification de la variable cible
+    - identification des métriques d'évaluation, R², matrice de confusion, classification report...
+    - objectif de score pour chacune de ces métriques  
+
+<br>
+
+2. Nettoyage
+    - gestion des valeurs manquantes, utiliser la régression linéaire (sur quelle variable ?) --> faire une regression multiple sur la variable ou il y a des valeurs manquantes (sans les valeurs manquantes) puis faire une prédiction pour les valeurs manquantes
+    - gestion des valeurs aberrantes
+    - compréhension du dataset
+
+<br>
+
+3. Exploration
+    - compréhension du dataset
+    - analyse des corrélations : matrice de corrélations, heatmap
+    - analyse des variables par rapport à la variable cible
+    - analyses univariées : boxplot et histogramme pour chaque variable qualitative
+    - analyses bivariées : quantitatif/qualitatif --> analyse des variables par groupes
+        conclusion rapide à chaque fois --> essayer de trouver des pistes
+    - analyses bivariées quantitatif/quantitatif --> voir les corrélations
+    - si je vois quelque chose --> verifier la signicativité avec un test statistique
+        student...  
+      
+<br>
+
+5. Modélisation
+    - Choix des algos : Régression logistique ou ACP + Kmeans
+    - Regression logistique --> expliquer les principes de la régression logistique, revoir les prérequis
+          - Standardisation des données ? / polynomiales features ?
+          - vérifier que les donnees respectent les prérequis de la régression logistique
+    - ACP + Kmeans --> voir etapes projet precedent + github
+    - créer jeu entrainement, validation, test
+    - utiliser cross validation
+    - utiliser gridsearchcv --> optimisation des hyperparamètres
+    
+<br> 
+  
+6. Evaluation du modèle 
+    - learning curve
+    - confusion matrix
+    - R²
+    - classification report
